@@ -1,0 +1,22 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: traefik
+    labels:
+      app: k8s-101
+    name: k8s-101-ingress
+  spec:
+    rules:
+    - host: k8s-101.doctorondemand.com
+      http:
+        paths:
+        - backend:
+            serviceName: k8s-101-service
+            servicePort: 80
+          path: /
+  status:
+    loadBalancer: {}
+kind: List

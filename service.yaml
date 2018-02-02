@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: k8s-101-service
+spec:
+  selector:
+    app: k8s-101
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000

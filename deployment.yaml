@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-101-deployment
+  labels:
+    app: k8s-101
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-101
+  template:
+    metadata:
+      labels:
+        app: k8s-101
+    spec:
+      containers:
+      - name: k8s-101
+        image: 327547205753.dkr.ecr.us-west-1.amazonaws.com/dev/k8s-101:v1
+        ports:
+        - containerPort: 8000
