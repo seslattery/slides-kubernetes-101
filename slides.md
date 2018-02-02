@@ -7,65 +7,12 @@ image-credit: Photo "k8s Sticker" shared by Joe Beda under a [Creative Commons (
 ---
 class: middle, center
 
-# Kubernetes 101
+# Kubernetes
+
 
 .cblock[
-Joe Beda<br>
-CTO, Heptio
-]
-
-.image-credit[
-{{image-credit}}
-]
-
----
-
-class: column-slide
-background-image: url(photos/record.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turntable") shared by [VanDammeMaarten](https://flickr.com/people/mavadam) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# Recap
-## Containers
-]
-.right-column[
-.center[
-# "It's the next big thing!"
-]
-]
-]
-
-.image-credit[
-{{image-credit}}
-]
-
----
-
-class: column-slide
-background-image: url(photos/record.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turntable") shared by [VanDammeMaarten](https://flickr.com/people/mavadam) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# Recap
-## Linux Kernel Features
-
-]
-.right-column[
-cgroups:
-
-* Resource limiting, tracking, prioritization, and isolation
-* CPU, RAM, IO, Networking, etc.
-* Developed by Google for over ~10 years
-* "nice++"
-
-namespaces:
-
-* Resource visibility and naming isolation
-* network, PID, users, mounts
-* "chroot++"
-
-cgroups + namespaces = "lightweight virtualization"
-]
+Sean Slattery<br>
+P[r]od Wrangler, Doctor on Demand
 ]
 
 .image-credit[
@@ -74,27 +21,22 @@ cgroups + namespaces = "lightweight virtualization"
 
 ---
 class: column-slide
-background-image: url(photos/record.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turntable") shared by [VanDammeMaarten](https://flickr.com/people/mavadam) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
+background-image: url(photos/core-memory.jpg)
+image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
 
 .column-container[.left-column[
-# Recap
-## User Experience
-
+# Demo: BookInfo
+### Broken into 4 separate microservices
+### 3 versions of review microservice
 ]
-.right-column[
-Containers == Docker?
-
-* *Image format:* Upload, download, share, build
-* *API:* Automatable create, delete, start, stop
-* *Networking*: Good defaults
-]
-]
+.right-column[.center[
+<object type="image/svg+xml" data="bookreview/noistio.svg">
+</object>
+]]]
 
 .image-credit[
 {{image-credit}}
 ]
-
 ---
 class: column-slide
 background-image: url(photos/record.jpg)
@@ -110,11 +52,9 @@ Users benefits:
 
 1. Packaging, deployment and reuse
 2. Efficiency and overcommit
-3. Security*
+3. Security
 
 This list is in order
-
-\* Big caveats here currently
 ]
 ]
 
@@ -161,7 +101,7 @@ image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turnt
 
 .column-container[.left-column[
 # Recap
-## Micro-services?
+## Micro-services
 
 ]
 .right-column[
@@ -170,62 +110,8 @@ image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turnt
  * Enables smaller, nimble, decoupled teams and processes.
  * Better tooling enables and encourages microservices.
 
-Not what I'm talking about today.
-
 ]
 ]
-
-.image-credit[
-{{image-credit}}
-]
----
-class: column-slide
-background-image: url(photos/ship-wheel.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/leroy-freakwinter/3108057269 "Captain Jack Sparrow") shared by [Rick Galvan](https://flickr.com/people/leroy-freakwinter) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# Kubernetes
-## Defined
-
-]
-.right-column[
-
-
-Kubernetes is ancient Greek for "Helmsman".  Root of the word "Governor", "Cybernetics".
-
-Kubernetes is a "Container Orchestrator" or "Cluster Manager".
-
-* Places containers on nodes
-* Recovers automatically from failure
-* Basic monitoring, logging, health checking
-* Enables containers to find each other.
-
-
-Key component in *logical infrastructure*
-
-]]
-
-.image-credit[
-{{image-credit}}
-]
----
-class: column-slide
-background-image: url(photos/ship-wheel.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/leroy-freakwinter/3108057269 "Captain Jack Sparrow") shared by [Rick Galvan](https://flickr.com/people/leroy-freakwinter) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# Kubernetes
-## Google Grown
-]
-.right-column[
-Based on ideas proven at Google over 10 years
-
-*Everything* at Google runs in a container.
-
-Google launches 2 billion containers per week.
-
-Part of a larger set of tools that make up the internal Google platform.
-]]
 
 .image-credit[
 {{image-credit}}
@@ -244,7 +130,7 @@ https://github.com/kubernetes/kubernetes
 
 *Very* active open source project
 
-23k stars, 1400+ contributors
+32k stars, 1500+ contributors
 
 Apache 2 licensed
 
@@ -465,7 +351,7 @@ image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We'r
 .right-column[
 * **Role Based Access Control (RBAC)**
   * Control what users have access to what objects
-* **Multiple Schedulers**
+* **Service Mesh**
 * **Flexible Scheduling Constraints**
   * Affinity, anti-affinity, taints, tolerations
 * **StatefulSet**
@@ -512,6 +398,13 @@ class: middle, left
 # Thank you!
 
 .cblock[
+Demo example from Istio:<br>
+https://archive.istio.io/v0.5/docs/guides/bookinfo
+]
+
+.cblock[
+Slides adapted from https://github.com/jbeda/slides-kubernetes-101 <br>
+Originally by: <br>
 Joe Beda<br>
 [@jbeda](https://twitter.com/jbeda)<br>
 https://www.heptio.com<br>
