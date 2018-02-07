@@ -12,31 +12,13 @@ class: middle, center
 
 .cblock[
 Sean Slattery<br>
-P[r]od Wrangler, Doctor on Demand
+Pod Wrangler, Doctor on Demand
 ]
 
 .image-credit[
 {{image-credit}}
 ]
 
----
-class: column-slide
-background-image: url(photos/core-memory.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
-
-.column-container[.left-column[
-# Demo: BookInfo
-### Broken into 4 separate microservices
-### 3 versions of review microservice
-]
-.right-column[.center[
-<object type="image/svg+xml" data="bookreview/noistio.svg">
-</object>
-]]]
-
-.image-credit[
-{{image-credit}}
-]
 ---
 class: column-slide
 background-image: url(photos/record.jpg)
@@ -48,13 +30,11 @@ image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turnt
 
 ]
 .right-column[
-Users benefits:
+Developer benefits:
 
 1. Packaging, deployment and reuse
-2. Efficiency and overcommit
-3. Security
-
-This list is in order
+2. Efficiency and scalability
+3. Security and Auditing
 ]
 ]
 
@@ -76,9 +56,8 @@ image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turnt
 Dev &rarr; Production
 
 * Multi-machine
-* Discovery and Naming
+* Service Discovery and Naming
 * Scaling
-* Multiple users
 * Failure tolerance and recovery
 * Monitoring
 * Logging
@@ -181,11 +160,9 @@ image-credit: [flickr photo](https://flickr.com/photos/seattlemunicipalarchives/
 * control loops
 * simple > complex
 * modularity
-* legacy compatible
-* network-centric
+* backwards compatibility
 * labels > hierarchy
 * cattle > pets
-* open > closed
 ]]
 
 .image-credit[
@@ -249,7 +226,7 @@ image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 
 
 .column-container[.left-column[
 # Core Concepts
-## ReplicaSet
+## Deployment
 ]
 .right-column[.center[
 <object type="image/svg+xml" data="diagrams/rc.svg">
@@ -267,7 +244,7 @@ image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 
 
 .column-container[.left-column[
 # Core Concepts
-## ReplicaSet
+## Deployment
 ]
 .right-column[.center[
 <object type="image/svg+xml" data="diagrams/rc2.svg">
@@ -352,6 +329,9 @@ image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We'r
 * **Role Based Access Control (RBAC)**
   * Control what users have access to what objects
 * **Service Mesh**
+  * Intelligent Routing
+  * Increased Observability
+  * Fault Injection
 * **Flexible Scheduling Constraints**
   * Affinity, anti-affinity, taints, tolerations
 * **StatefulSet**
@@ -376,19 +356,52 @@ image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We'r
 # Ecosystem
 ]
 .right-column[
-* **Platforms**
-  * OpenStack, Deis Workflow
+* **Helm: Package Manager**
+  * Super easy to install applications and systems.
+  * Applications packaged as charts
 * **Operators**
   * Automatic management of systems via API
   * Integrates using k8s extensions
   * etcd, Prometheus, elasticsearch, memcahced, mongodb, rook, etc.
 * **Authentication Providers**
-  * Extended via webhook.  OpenID Connect, OAuth 2, LDAP, SAML, etc.
+  * Extended via webhook.  IAM, OpenID Connect, OAuth 2, LDAP, SAML, etc.
   * Already implemented on GKE and GCE.
-* **Helm: Package Manager**
-  * Super easy to install applications and systems.
 * **Extended Network Policy**
 ]]
+
+.image-credit[
+{{image-credit}}
+]
+---
+class: column-slide
+background-image: url(photos/road.jpg)
+image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We're on the Road to Nowhere") shared by [mdalmuld](https://flickr.com/people/mdalmuld) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
+
+.column-container[.left-column[
+# Discussion
+]
+.right-column[
+
+* **How can we leverage Kubernetes to improve our workflows?**
+]]
+
+.image-credit[
+{{image-credit}}
+]
+---
+class: column-slide
+background-image: url(photos/core-memory.jpg)
+image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
+
+.column-container[.left-column[
+# Demo: BookInfo
+### Broken into 4 separate microservices
+### 3 versions of review microservice
+]
+.right-column[.center[
+<object type="image/svg+xml" data="bookreview/noistio.svg">
+</object>
+]]]
 
 .image-credit[
 {{image-credit}}
@@ -398,7 +411,7 @@ class: middle, left
 # Thank you!
 
 .cblock[
-Demo example from Istio:<br>
+Example microservices from Istio:<br>
 https://archive.istio.io/v0.5/docs/guides/bookinfo
 ]
 
