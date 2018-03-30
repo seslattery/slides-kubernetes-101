@@ -7,12 +7,12 @@ image-credit: Photo "k8s Sticker" shared by Joe Beda under a [Creative Commons (
 ---
 class: middle, center
 
-# Kubernetes
+# Kubernetes Workshop:  Container Fundamentals
 
 
 .cblock[
 Sean Slattery<br>
-Pod Wrangler, Doctor on Demand
+Container Maintainer, Doctor on Demand
 ]
 
 .image-credit[
@@ -25,46 +25,16 @@ background-image: url(photos/record.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turntable") shared by [VanDammeMaarten](https://flickr.com/people/mavadam) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
 
 .column-container[.left-column[
-# Recap
-## Excitement
+# Containers
 
 ]
 .right-column[
-Developer benefits:
+Benefits:
 
 1. Packaging, deployment and reuse
-2. Efficiency and scalability
-3. Security and Auditing
-]
-]
-
-.image-credit[
-{{image-credit}}
-]
-
----
-class: column-slide
-background-image: url(photos/record.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turntable") shared by [VanDammeMaarten](https://flickr.com/people/mavadam) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# Recap
-## Gaps
-
-]
-.right-column[
-Dev &rarr; Production
-
-* Multi-machine
-* Service Discovery and Naming
-* Scaling
-* Failure tolerance and recovery
-* Monitoring
-* Logging
-* High availability
-* Deployment lifecycle
-* Load balancing
-* etc, etc
+2. Run multiple versions on same system with various libraries at the same time
+2. Efficiency
+3. Security
 
 ]
 ]
@@ -80,14 +50,39 @@ image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turnt
 
 .column-container[.left-column[
 # Recap
-## Micro-services
+## Options
 
 ]
 .right-column[
 
- * Split your application into small services that can be reused, remixed and shared.
- * Enables smaller, nimble, decoupled teams and processes.
- * Better tooling enables and encourages microservices.
+Baremetal
+
+Virtualization
+
+Containerization
+
+]
+]
+
+.image-credit[
+{{image-credit}}
+]
+
+---
+class: column-slide
+background-image: url(photos/record.jpg)
+image-credit: [flickr photo](https://flickr.com/photos/mavadam/3241311268 "Turntable") shared by [VanDammeMaarten](https://flickr.com/people/mavadam) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
+
+.column-container[.left-column[
+# Recap
+## Containerization vs Virtualization
+
+]
+.right-column[
+
+<object type="image/png" data="diagrams/cont_virt.png">
+</object>
+diagrams/cont_virt.png
 
 ]
 ]
@@ -101,30 +96,22 @@ background-image: url(photos/ship-wheel.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/leroy-freakwinter/3108057269 "Captain Jack Sparrow") shared by [Rick Galvan](https://flickr.com/people/leroy-freakwinter) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
 
 .column-container[.left-column[
-# Kubernetes
-## Open Source
+# What's a container?
 ]
 .right-column[
-https://github.com/kubernetes/kubernetes
 
-*Very* active open source project
+  * chroot
+  * cgroups
+  * namespaces
+  * virtual networking
+  * union filesystem (Copy on Write)
 
-32k stars, 1500+ contributors
-
-Apache 2 licensed
-
-Written in Go
-
-Hosted by the Cloud Native Computing Foundation (CNCF)
 ]]
 
 .image-credit[
 {{image-credit}}
 ]
 
-???
-
-stats with git shortlog -sn --no-merges | wc
 
 ---
 class: column-slide
@@ -132,15 +119,14 @@ background-image: url(photos/ship-wheel.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/leroy-freakwinter/3108057269 "Captain Jack Sparrow") shared by [Rick Galvan](https://flickr.com/people/leroy-freakwinter) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
 
 .column-container[.left-column[
-# Kubernetes
+# Container
 ## Benefits
 ]
 .right-column[
-Extend the container goodness across nodes.
-
-Enable operations specialization. Cluster Ops vs. App Ops
-
-Reduce cost to run many things in production.  Enables new ways of building applications.
+* Makes it easy to package your application
+* Shared filesystem layers reduces disk usage
+* Much faster initialization
+* Significantly smaller
 ]]
 
 .image-credit[
@@ -153,16 +139,13 @@ background-image: url(photos/space-needle.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/seattlemunicipalarchives/6175308389 "Space Needle under construction, 1961") shared by [Seattle Municipal Archives](https://flickr.com/people/seattlemunicipalarchives) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
 
 .column-container[.left-column[
-# Design Principles
+# Docker
 ]
 .right-column[
-* declarative > imperative
-* control loops
-* simple > complex
-* modularity
-* backwards compatibility
-* labels > hierarchy
-* cattle > pets
+What is docker?
+  * Containers have existed before Docker
+  * Google has been using containers since ~2005
+  * Docker brought standardization, tooling and ease of use
 ]]
 
 .image-credit[
@@ -174,11 +157,29 @@ background-image: url(photos/core-memory.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
 
 .column-container[.left-column[
-# Core Concepts
-## Cluster
+# Open Container Initiative (OCI)
 ]
 .right-column[.center[
-<object type="image/svg+xml" data="diagrams/cluster.svg">
+
+  * We could build and run containers without using docker at all
+  * Image-spec and Runtime-spec
+
+]]]
+
+.image-credit[
+{{image-credit}}
+]
+---
+class: column-slide
+background-image: url(photos/core-memory.jpg)
+image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
+
+.column-container[.left-column[
+# Image Layers
+## Copy on Write
+]
+.right-column[.center[
+<object type="image/png" data="diagrams/container-layers.jpg">
 </object>
 ]]]
 
@@ -191,12 +192,10 @@ background-image: url(photos/core-memory.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
 
 .column-container[.left-column[
-# Core Concepts
-## Pod
+# One Process per Container
 ]
 .right-column[.center[
-<object type="image/svg+xml" data="diagrams/pod.svg">
-</object>
+
 ]]]
 
 .image-credit[
@@ -208,29 +207,10 @@ background-image: url(photos/core-memory.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
 
 .column-container[.left-column[
-# Core Concepts
-## Labels
+# Let's build a very simple container from scratch
 ]
 .right-column[.center[
-<object type="image/svg+xml" data="diagrams/labels.svg">
-</object>
-]]]
-
-.image-credit[
-{{image-credit}}
-]
----
-class: column-slide
-background-image: url(photos/core-memory.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
-
-.column-container[.left-column[
-# Core Concepts
-## Deployment
-]
-.right-column[.center[
-<object type="image/svg+xml" data="diagrams/rc.svg">
-</object>
+  **Demo**
 ]]]
 
 .image-credit[
@@ -243,106 +223,10 @@ background-image: url(photos/core-memory.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
 
 .column-container[.left-column[
-# Core Concepts
-## Deployment
+# Let's look at a basic docker build
 ]
 .right-column[.center[
-<object type="image/svg+xml" data="diagrams/rc2.svg">
-</object>
 ]]]
-
-.image-credit[
-{{image-credit}}
-]
-
----
-class: column-slide
-background-image: url(photos/core-memory.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
-
-.column-container[.left-column[
-# Core Concepts
-## Service
-]
-.right-column[.center[
-<object type="image/svg+xml" data="diagrams/service.svg">
-</object>
-]]]
-
-.image-credit[
-{{image-credit}}
-]
----
-class: column-slide
-background-image: url(photos/core-memory.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/dvanzuijlekom/6952363784 "Magnetic-core Memory") shared by [dvanzuijlekom](https://flickr.com/people/dvanzuijlekom) under a [Creative Commons ( BY-SA ) license](https://creativecommons.org/licenses/by-sa/2.0/)
-
-.column-container[.left-column[
-# Core Concepts
-## Persistent Volumes
-]
-.right-column[.center[
-<object type="image/svg+xml" data="diagrams/pvs.svg">
-</object>
-]]]
-
-.image-credit[
-{{image-credit}}
-]
-
----
-class: column-slide
-background-image: url(photos/road.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We're on the Road to Nowhere") shared by [mdalmuld](https://flickr.com/people/mdalmuld) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# So much more!
-]
-.right-column[
-* **Namespaces**
-  * Isolated workspaces for users/projects
-* **Ingress**
-  * L7 load balancing
-* **Deployments**
-  * Declarative version updates
-* **Jobs**
-  * Run to completion
-* **Autoscaling**
-  * Automatically adjust replica count
-* **DaemonSets**
-  * Run something on every node (or subset)
-]]
-
-.image-credit[
-{{image-credit}}
-]
-
----
-class: column-slide
-background-image: url(photos/road.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We're on the Road to Nowhere") shared by [mdalmuld](https://flickr.com/people/mdalmuld) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# So much more!
-]
-.right-column[
-* **Role Based Access Control (RBAC)**
-  * Control what users have access to what objects
-* **Service Mesh**
-  * Intelligent Routing
-  * Increased Observability
-  * Fault Injection
-* **Flexible Scheduling Constraints**
-  * Affinity, anti-affinity, taints, tolerations
-* **StatefulSet**
-  * Support for long term stateful distributed systems
-* **Automatic Cluster Scaling**
-  * K8s publishes signals that allow external services to scale the cluster automatically.
-* **Cloud Provider Integration**
-  * GCP, AWS, Azure, OpenStack, vSphere
-* **Network Policy**
-  * Network ingress policy
-]]
 
 .image-credit[
 {{image-credit}}
@@ -353,36 +237,10 @@ background-image: url(photos/road.jpg)
 image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We're on the Road to Nowhere") shared by [mdalmuld](https://flickr.com/people/mdalmuld) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
 
 .column-container[.left-column[
-# Ecosystem
-]
-.right-column[
-* **Helm: Package Manager**
-  * Super easy to install applications and systems.
-  * Applications packaged as charts
-* **Operators**
-  * Automatic management of systems via API
-  * Integrates using k8s extensions
-  * etcd, Prometheus, elasticsearch, memcahced, mongodb, rook, etc.
-* **Authentication Providers**
-  * Extended via webhook.  IAM, OpenID Connect, OAuth 2, LDAP, SAML, etc.
-  * Already implemented on GKE and GCE.
-* **Extended Network Policy**
-]]
-
-.image-credit[
-{{image-credit}}
-]
----
-class: column-slide
-background-image: url(photos/road.jpg)
-image-credit: [flickr photo](https://flickr.com/photos/mdalmuld/9559878695 "We're on the Road to Nowhere") shared by [mdalmuld](https://flickr.com/people/mdalmuld) under a [Creative Commons ( BY ) license](https://creativecommons.org/licenses/by/2.0/)
-
-.column-container[.left-column[
-# Discussion
+# Questions?
 ]
 .right-column[
 
-* **How can we leverage Kubernetes to improve our workflows?**
 ]]
 
 .image-credit[
